@@ -1,11 +1,15 @@
 import React from 'react';
 // import Hello from './components/hello'
-import Tarans from './components/transiton/CssTransiton'
+import CSSTransitonDemo from './components/transiton/CSSTransitonDemo.js'
+import SwitchTransitonDemo from './components/transiton/SwitchTransitonDemo'
+import TransitonGroupDemo from './components/transiton/TransitonGroupDemo'
 
 function App() {
   return (
     <div>
-      <Tarans />
+      {/* <CSSTransitonDemo /> */}
+      {/* <SwitchTransitonDemo /> */}
+      <TransitonGroupDemo />
     </div>
   );
 }

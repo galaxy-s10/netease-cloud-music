@@ -1,0 +1,28 @@
+/* 显示 */
+.avatar-enter,
+.avatar-appear {
+    opacity: 0;
+    transform: scale(0.7);
+}
+.avatar-enter-active,
+.avatar-appear-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1000ms, transform 1000ms;
+}
+.avatar-enter-done {
+}
+
+/* 隐藏 */
+.avatar-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+.avatar-exit-active {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 1000ms, transform 1000ms;
+}
+.avatar-exit-done {
+    opacity: 0;
+}

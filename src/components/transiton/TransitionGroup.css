@@ -1,0 +1,29 @@
+/* 显示 */
+.group-enter,
+.group-appear {
+    opacity: 0;
+    transform: scale(0.7);
+}
+.group-enter-active,
+.group-appear-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 1000ms, transform 1000ms;
+}
+.group-enter-done {
+    color: red;
+}
+
+/* 隐藏 */
+.group-exit {
+    opacity: 1;
+    transform: scale(1);
+}
+.group-exit-active {
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 1000ms, transform 1000ms;
+}
+.group-exit-done {
+    opacity: 0;
+}
