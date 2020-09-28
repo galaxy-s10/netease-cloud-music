@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, Input } from 'antd';
+// import Hello from './components/hello'
+import Tarans from './components/transiton/CssTransiton'
+
 function App() {
   return (
     <div>
-      <Button type="primary">Primary Button</Button>
-      <Input placeholder="请输入"></Input>
+      <Tarans />
     </div>
   );
 }
