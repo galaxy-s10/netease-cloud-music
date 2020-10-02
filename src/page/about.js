@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import store from '../store'
-import { subAction } from '../store/actionCreators'
+import { subAction } from '../store/counter/actionCreators'
 
-export default class home extends PureComponent {
+export default class about extends PureComponent {
     constructor(porps) {
         super(porps)
         this.state = {
-            counter: store.getState().counter
+            counter: store.getState().counterInfo.counter
         }
     }
     increment(e){
@@ -20,7 +20,7 @@ export default class home extends PureComponent {
     componentDidMount(){
         this.unsubscribe = store.subscribe(()=>{
             this.setState({
-                counter: store.getState().counter
+                counter: store.getState().counterInfo.counter
             })
         })
     }
