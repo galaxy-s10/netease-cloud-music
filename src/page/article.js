@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react'
 
-export default class user extends PureComponent {
+export default class article extends PureComponent {
     render() {
         return (
             <div>
-                user
+                文章
             </div>
         )
     }
