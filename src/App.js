@@ -18,9 +18,11 @@ import Home2 from './page/home2'
 import Home3 from './page/home3'
 import Home4 from './page/home4-redux-thunk'
 import Home5 from "./page/home5-redux-saga";
+import Home6 from "./page/home6";
 import About from './page/about'
 import About2 from './page/about2'
 import About3 from './page/about3'
+import About4 from './page/about4'
 import notFound from './page/notFound';
 import Login from './page/login';
 import MemoHookDemo01 from './page/userMemo';
@@ -30,10 +32,11 @@ function App() {
   return (
     <div>
       <MemoHookDemo02></MemoHookDemo02>
-      <BrowserRouter>
-        {/* <NavLink exact to="/" activeStyle={{ color: 'red' }}>Hello</NavLink>
+      {/* <BrowserRouter>
+        <NavLink exact to="/" activeStyle={{ color: 'red' }}>Hello</NavLink>
         <NavLink to="home" activeStyle={{ color: 'red' }}>Home</NavLink>
-        <NavLink to="about" activeStyle={{ color: 'red' }}>About</NavLink> */}
+        <NavLink to="about" activeStyle={{ color: 'red' }}>About</NavLink>
+        <hr></hr>
         <NavLink exact to="/" activeClassName="activeCss">Hello</NavLink>
         <NavLink to="home" activeClassName="activeCss">Home</NavLink>
         <NavLink to="about" activeClassName="activeCss">About</NavLink>
@@ -48,7 +51,7 @@ function App() {
           <Route component={notFound}></Route>
         </Switch>
 
-      </BrowserRouter>
+      </BrowserRouter> */}
 
       {/* <CSSTransitonDemo /> */}
       {/* <SwitchTransitonDemo /> */}
@@ -58,6 +61,8 @@ function App() {
       {/* <Home3></Home3> */}
       {/* <Home4></Home4> */}
       {/* <Home5></Home5> */}
+      <Home6></Home6>
+      <About4></About4>
       {/* <About3></About3> */}
     </div>
   );
