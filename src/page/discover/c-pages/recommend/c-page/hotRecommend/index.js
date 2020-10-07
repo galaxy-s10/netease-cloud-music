@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, shallowEqual } from "react-redux";
 
 
 import { getHotRecommendAction } from '../../store/actionCreators';
@@ -7,20 +7,28 @@ import {
     HotRecommendWrapper
 } from './style'
 import RecommendHeader from '@/components/recommendHeader'
+import SongCover from '@/components/songCover'
 
-export default memo(function HotRecommend() {
+function HotRecommend() {
     const dispatch = useDispatch()
+    const { hotRecommends } = useSelector(state => {
+        return { hotRecommends: state.get("recommend").get("hotRecommend") }
+    }, shallowEqual)
     useEffect(() => {
-        dispatch(getHotRecommendAction())
-    }, [])
-    useSelector(state => {
-        console.log(state.get("recommend").get("hotRecommend"))
-    })
-
+        dispatch(getHotRecommendAction(8))
+    }, [dispatch])
     return (
         <HotRecommendWrapper>
             <RecommendHeader title="热门推荐" keywords={["华语", "流行", "摇滚", "民谣", "电子"]}></RecommendHeader>
-
-        </HotRecommendWrapper>
+            <div className="recommend-list">
+                {
+                    hotRecommends.map((item, index) => {
+                        return <SongCover info={item} key={item.id}></SongCover>
+                    })
+                }
+            </div>
+        </HotRecommendWrapper >
     )
-})
+}
+
+export default memo(HotRecommend)

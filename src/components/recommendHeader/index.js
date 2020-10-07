@@ -15,7 +15,7 @@ const RecommeneHeader = memo(function (props) {
                         keywords.map((item, index) => {
                             return (
                                 <div className="item" key={item}>
-                                    <a>{item}</a>
+                                    <a href="#/">{item}</a>
                                     <span className="divider">|</span>
                                 </div>
                             )
@@ -24,7 +24,7 @@ const RecommeneHeader = memo(function (props) {
                 </div>
             </div>
             <div className="right">
-                <a href="">更多</a>
+                <a href="#/">更多</a>
                 <i></i>
             </div>
         </HeaderWrapper>

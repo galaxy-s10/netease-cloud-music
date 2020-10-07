@@ -8,14 +8,16 @@ import store from "./store"
 
 import Header from "./components/header";
 import Footer from "./components/footer";
+import PlayerBar from "./page/player/playerBar";
 
 export default memo(function App() {
   return (
     <Provider store={store}>
-      <HashRouter>
+      <HashRouter basename="/music">
         <Header></Header>
         {renderRoutes(routes)}
         <Footer></Footer>
+        <PlayerBar></PlayerBar>
       </HashRouter>
     </Provider>
   );

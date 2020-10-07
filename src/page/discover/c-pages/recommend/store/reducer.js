@@ -1,9 +1,12 @@
 import { Map } from "immutable";
-import hotRecommend from "../c-page/hotRecommend";
 
 const defaultState = Map({
     topBanners: [],
-    hotRecommend,
+    hotRecommend: [],
+    newAlbum: [],
+    upRanking: [],
+    newRanking: [],
+    originRanking: [],
 })
 
 function reducer(state = defaultState, action) {
@@ -12,8 +15,15 @@ function reducer(state = defaultState, action) {
             // return { ...state, topBanners: action.topBanners }
             return state.set("topBanners", action.topBanners)
         case "changeHotRecommend":
-            console.log(action)
             return state.set("hotRecommend", action.hotRecommend)
+        case "changeAlbum":
+            return state.set("newAlbum", action.album)
+        case "changeUpRanking":
+            return state.set("upRanking", action.upRanking)
+        case "changeNewRanking":
+            return state.set("newRanking", action.newRanking)
+        case "changeOriginRanking":
+            return state.set("originRanking", action.originRanking)
         default:
             return state;
     }

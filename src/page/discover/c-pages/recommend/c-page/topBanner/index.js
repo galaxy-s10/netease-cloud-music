@@ -16,7 +16,7 @@ const TopBanner = memo(function (props) {
     const { topBanners } = useSelector(state => {
         // return { topBanners: state.recommend.topBanners }
         // return { topBanners: state.get("recommend").get("topBanners") }
-        console.log('useSelectoruseSelector')
+        // console.log('useSelectoruseSelector')
         return { topBanners: state.getIn(["recommend", "topBanners"]) }
     }, shallowEqual)
     const dispatch = useDispatch()
@@ -25,13 +25,18 @@ const TopBanner = memo(function (props) {
 
     useEffect(() => {
         dispatch(getTopBannerAction())
-        console.log('useEffectuseEffectuseEffect')
+        // console.log('useEffectuseEffectuseEffect')
     }, [])
 
     const beforeChange = useCallback((from, to) => {
         setCurrentIndex(to)
-        console.log('beforeChangebeforeChange')
+        // console.log('beforeChangebeforeChange')
     }, [])
+
+    const showAlect = useCallback((num) => {
+        console.log('弹窗显示：' + num)
+    }, [])
+
     const imgUrl = topBanners[currentIndex] && topBanners[currentIndex].imageUrl + "?imageView&blur=40x20"
     return (
         <div>
