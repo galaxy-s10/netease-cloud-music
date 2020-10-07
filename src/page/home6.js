@@ -14,7 +14,7 @@ function Home(props) {
     const dispatch = useDispatch()
 
     const { counter } = useSelector(state => {
-        console.log(state)
+        console.log('useSelectoruseSelectoruseSelector')
         return {
             counter: state.counterInfo.counter
         }
@@ -66,11 +66,13 @@ export default Home
 // }
 
 // const mapStateToProps = state => {
+//     console.log('mapStateToPropsmapStateToPropsmapStateToProps')
 //     return {
 //         counter: state.counter,
 //     }
 // }
 // const mapDispatchToProps = dispatch => {
+//     console.log('mapDispatchToPropsmapDispatchToPropsmapDispatchToProps')
 //     return {
 //         add1: () => dispatch(incAction()),
 //         add5: v => dispatch(addAction(v)),
