@@ -6,17 +6,17 @@ import {
   PlayerRight
 } from './style';
 
-export default memo(function HYPlayer() {
+export default memo(function Player() {
   return (
     <PlayerWrapper>
       <div className="content wrap-v2">
         <PlayerLeft>
-          <h2>HYPlayerInfo</h2>
-          <h2>HYSongContent</h2>
+          <h2>PlayerInfo</h2>
+          <h2>SongContent</h2>
         </PlayerLeft>
         <PlayerRight>
-          <h2>HYSimiPlaylist</h2>
-          <h2>HYSimiSong</h2>
+          <h2>SimiPlaylist</h2>
+          <h2>SimiSong</h2>
           <h2>Download</h2>
         </PlayerRight>
       </div>
