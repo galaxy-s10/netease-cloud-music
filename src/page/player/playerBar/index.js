@@ -2,11 +2,10 @@ import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { getSizeImage, formatDate, getPlaySong } from "../../../untils/format-utils";
-import { getSongDetailAction } from "../store/actionCreators";
+import { getSongDetailAction, getLyricAction, changeSequenceAction, changePlaySongAction } from "../store/actionCreators";
 
-import { message } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { Slider } from 'antd';
+import { Slider, message } from 'antd';
 import {
   PlaybarWrapper,
   Control,
@@ -22,16 +21,28 @@ export default memo(function PlayerBar() {
   const dispatch = useDispatch()
   const audioRef = useRef()
 
-  const { currentSong } = useSelector(state => {
-    return { currentSong: state.get("player").get("currentSong") }
+  const { currentSong, sequence, playList, lyricList, currentLyricIndex } = useSelector(state => {
+    return {
+      currentSong: state.get("player").get("currentSong"),
+      sequence: state.getIn(["player", "sequence"]),
+      playList: state.getIn(["player", "playList"]),
+      lyricList: state.getIn(["player", "lyricList"]),
+      currentLyricIndex: state.getIn(["player", "currentLyricIndex"]),
+    }
   }, shallowEqual)
 
   useEffect(() => {
-    dispatch(getSongDetailAction(1344897943))
+    dispatch(getSongDetailAction(513360721))
+    dispatch(getLyricAction(513360721))
   }, [dispatch])
 
   useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id)
+    audioRef.current.play().then(res => {
+      setStatus(true)
+    }).catch(err => {
+      setStatus(false)
+    })
   }, [currentSong])
 
   const author = currentSong.ar && currentSong.ar[0].name
@@ -48,46 +59,72 @@ export default memo(function PlayerBar() {
   }
   const timeUpdate = (e) => {
     const cTime = e.target.currentTime; // 当前秒数（秒）
-    
-    setCurrentTime(cTime * 1000)
-    console.log('timeUpdate',cTime)
+    let cIndex = 0;
     if (!isChanging) {
       setProgress(cTime * 1000 / duration * 100)
+      setCurrentTime(cTime * 1000)
+    }
+    for (let i = 0; i < lyricList.length; i++) {
+      if (cTime * 1000 < lyricList[i].time) {
+        cIndex = i;
+        break
+      }
+    }
+    message.open({
+      key: "lyric",
+      content: lyricList[cIndex - 1].content,
+      duration: 0,
+      className: "lyric-class"
+    })
+  }
+  const musicEnd = () => {
+    if (sequence === 2 || playList.length === 1) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    } else {
+      dispatch(changePlaySongAction(1));
     }
   }
 
   const onChange = v => {
-    console.log(v, duration)
     setIsChange(true)
-    // const p = (v / 100) * duration
-    // setCurrentTime(p)
+    const p = (v / 100) * duration
+    setCurrentTime(p)
     setProgress(v)
   }
 
   const onAfterChange = v => {
-    console.log('放手了！')
-    console.log(v)
     const cTime1 = (v / 100) * duration
     audioRef.current.currentTime = cTime1 / 1000
-    console.log(audioRef.current.currentTime)
-    // if (!status) {
-    //   console.log('重新播放了')
-    //   playOrPause()
-    // }
     setIsChange(false)
-
+    if (!status) {
+      playOrPause();
+    }
   }
+
+  const changeSequence = () => {
+    let currentSequence = sequence + 1;
+    currentSequence = currentSequence > 2 ? 0 : currentSequence;
+    dispatch(changeSequenceAction(currentSequence))
+  }
+
+  const changeSong = tag => {
+    dispatch(changePlaySongAction(tag))
+  }
+
   return (
     <PlaybarWrapper className="sprite_player">
       <div className="content wrap-v2">
         <Control isPlaying={status}>
           <button className="sprite_player prev"
+            onClick={e => changeSong(-1)}
           ></button>
           <button
             className="sprite_player play"
             onClick={e => playOrPause()}
           ></button>
           <button className="sprite_player next"
+            onClick={e => changeSong(1)}
           ></button>
         </Control>
         <PlayInfo>
@@ -115,14 +152,17 @@ export default memo(function PlayerBar() {
             </div>
           </div>
         </PlayInfo>
-        <Operator>
+        <Operator sequence={sequence}>
           <div className="left">
             <button className="sprite_player btn favor"></button>
             <button className="sprite_player btn share"></button>
           </div>
           <div className="right sprite_player">
             <button className="sprite_player btn volume"></button>
-            <button className="sprite_player btn loop"></button>
+            <button
+              className="sprite_player btn loop"
+              onClick={e => changeSequence()}
+            ></button>
             <button className="sprite_player btn playlist"></button>
           </div>
         </Operator>
@@ -130,6 +170,7 @@ export default memo(function PlayerBar() {
       <audio
         ref={audioRef}
         onTimeUpdate={e => timeUpdate(e)}
+        onEnded={e => musicEnd(e)}
       />
     </PlaybarWrapper>
   )
