@@ -59,32 +59,44 @@ export const changePlaySongAction = (tag) => {
 }
 
 export const getSongDetailAction = ids => {
+    console.log('object')
     return (dispatch, getState) => {
         const playList = getState().getIn(["player", "playList"])
         const currentIndex = playList.findIndex(song => song.id == ids)
 
         if (currentIndex !== -1) {
-            // 找到歌曲
+            console.log('找到歌曲')
+            // 在播放列表里找到歌曲
             dispatch(changeCurrentSongIndexAction(currentIndex))
             const currentSong = playList[currentIndex]
             dispatch(changeCurrentSongAction(currentSong))
         } else {
-            // 没有找到歌曲
+            console.log('没有找到歌曲')
+            // 在播放列表里没有找到歌曲
             getSongDetail(ids).then(res => {
                 const song = res.songs && res.songs[0]
                 if (!song) return
                 const newPlayList = [...playList]
                 newPlayList.push(song)
-                dispatch(changeCurrentSongIndexAction(newPlayList.length - 1))
                 dispatch(changePlayListAction(newPlayList))
+                dispatch(changeCurrentSongIndexAction(newPlayList.length - 1))
                 dispatch(changeCurrentSongAction(song))
             })
         }
+
+        // 获取当前的歌词,并且解析
+        dispatch(getLyricAction(ids))
+        // getLyric(ids).then(res => {
+        //     const lrcString = res.lrc.lyric;
+        //     const lyrics = parseLyric(lrcString);
+        //     dispatch(changeLyricsAction(lyrics));
+        // });
 
     }
 }
 
 export const getLyricAction = ids => {
+    console.log(ids, 'index')
     return (dispatch, getState) => {
         getLyric(ids).then(res => {
             const lrcList = parseLyric(res.lrc.lyric)

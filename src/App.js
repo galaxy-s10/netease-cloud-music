@@ -13,7 +13,7 @@ import PlayerBar from "./page/player/playerBar";
 export default memo(function App() {
   return (
     <Provider store={store}>
-      <HashRouter basename="/music">
+      <HashRouter>
         <Header></Header>
         {renderRoutes(routes)}
         <Footer></Footer>
