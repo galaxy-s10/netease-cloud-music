@@ -10,6 +10,7 @@ export default memo(function RankingCover(props) {
     const { tracks = [] } = info;
     const dispatch = useDispatch()
     const addPlayList = (item) => {
+        console.log('榜单歌')
         dispatch(getSongDetailAction(item.id))
     }
 
