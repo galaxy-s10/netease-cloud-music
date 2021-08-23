@@ -8,10 +8,20 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.6.5",
+    "axios": "^0.21.1",
+    "immutable": "3",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.4",
+    "react-router": "^5.2.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "redux-immutable": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.3.0"
   },
   "scripts": {
     "start": "craco start",
@@ -33,5 +43,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "craco": "^0.0.3",
+    "craco-less": "^1.18.0"
   }
 }
