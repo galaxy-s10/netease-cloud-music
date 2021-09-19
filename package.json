@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-import": "^1.13.3",
     "craco": "^0.0.3",
     "craco-less": "^1.18.0"
   }
