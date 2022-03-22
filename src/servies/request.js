@@ -1,13 +1,13 @@
 import axios from "axios";
 import { BASE_URL, TIMEOUT } from "./config";
-axios.get("https://www.hsslive.cn/article/typelist").then((res) => {
-  //跨域
-  console.log(res, 111);
-});
-axios.get("https://www.hsslive.cn/api/type/pagelist").then((res) => {
-  //不跨域
-  console.log(res, 22);
-});
+// axios.get("https://www.hsslive.cn/article/typelist").then((res) => {
+//   //跨域
+//   console.log(res, 111);
+// });
+// axios.get("https://www.hsslive.cn/api/type/pagelist").then((res) => {
+//   //不跨域
+//   console.log(res, 22);
+// });
 
 const instance = axios.create({
   baseURL: BASE_URL,
