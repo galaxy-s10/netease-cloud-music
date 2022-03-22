@@ -4,7 +4,7 @@
 # Email: 2274751790@qq.com
 # Github: https://github.com/galaxy-s10
 # Date: 2022-01-03 16:12:54
-# LastEditTime: 2022-03-23 03:58:51
+# LastEditTime: 2022-03-23 05:03:59
 # Description:https://github.com/galaxy-s10/react-webpack-template
 ###
 
@@ -55,5 +55,5 @@ else
   echo 开始构建$ENV环境:
 fi
 
-npx cross-env REACT_APP_RELEASE_PROJECT_ENV=prod REACT_APP_RELEASE_PROJECT_NAME=netease-cloud-music craco build
+npx cross-env REACT_APP_RELEASE_PROJECT_NAME=$JOBNAME REACT_APP_RELEASE_PROJECT_ENV=$ENV craco build
 # npx cross-env REACT_APP_RELEASE_PROJECT_NAME=$JOBNAME REACT_APP_RELEASE_PROJECT_ENV=$ENV webpack --config ./config/webpack.common.ts --env production
