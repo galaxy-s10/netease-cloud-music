@@ -3,6 +3,7 @@ import {
   getHotRecommend,
   getAlbum,
   getRanking,
+  getToplist,
 } from "@/servies/recommend";
 
 export const changeBannerAction = (res) => ({
@@ -52,20 +53,22 @@ export const getAlbumAction = (limit) => {
 };
 export const getRankingAction = (idx) => {
   return (dispatch) => {
-    // 0:飙升 2:新歌 3:原创
-    getRanking(idx).then((res) => {
-      switch (idx) {
-        case 0:
-          dispatch(changeUpRankingAction(res.playlists));
-          break;
-        case 2:
-          dispatch(changeNewRankingAction(res.playlists));
-          break;
-        case 3:
-          dispatch(changeOriginRankingAction(res.playlists));
-          break;
-        default:
-      }
+    getToplist().then((toplistRes) => {
+      // 0:飙升 2:新歌 3:原创
+      getRanking(toplistRes.list[idx].id).then((res) => {
+        switch (idx) {
+          case 0:
+            dispatch(changeUpRankingAction(res.playlist));
+            break;
+          case 2:
+            dispatch(changeNewRankingAction(res.playlist));
+            break;
+          case 3:
+            dispatch(changeOriginRankingAction(res.playlist));
+            break;
+          default:
+        }
+      });
     });
   };
 };

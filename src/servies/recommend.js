@@ -21,9 +21,15 @@ export function getAlbum(limit) {
     },
   });
 }
+export function getToplist() {
+  return request({
+    url: "/toplist",
+  });
+}
+
 export function getRanking(id) {
   return request({
-    url: "/top/playlist",
+    url: "/playlist/detail",
     params: {
       id,
     },

@@ -26,9 +26,9 @@ export default memo(function Ranking() {
     <RankingWrapper>
       <RecommendHeader title="榜单"></RecommendHeader>
       <div className="tops">
-        {upRanking && <RankingCover info={upRanking}></RankingCover>}
-        {newRanking && <RankingCover info={newRanking}></RankingCover>}
-        {originRanking && <RankingCover info={originRanking}></RankingCover>}
+        <RankingCover info={upRanking}></RankingCover>
+        <RankingCover info={newRanking}></RankingCover>
+        <RankingCover info={originRanking}></RankingCover>
       </div>
     </RankingWrapper>
   );
