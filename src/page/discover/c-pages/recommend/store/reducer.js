@@ -24,6 +24,8 @@ function reducer(state = defaultState, action) {
       return state.set("newRanking", action.newRanking);
     case "changeOriginRanking":
       return state.set("originRanking", action.originRanking);
+    case "changeRankingToplist":
+      return state.set("rankingToplist", action.rankingToplist);
     default:
       return state;
   }
