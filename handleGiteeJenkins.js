@@ -69,7 +69,7 @@ if (path.resolve(__dirname) === giteeDir) {
 } else {
   findFile(dir);
   putFile();
-  execSync(`pnpm i`, { cwd: giteeDir });
+  execSync(`yarn`, { cwd: giteeDir });
   execSync(`git add .`, { cwd: giteeDir });
   execSync(`git commit -m 'feat: ${new Date().toLocaleString()}'`, {
     cwd: giteeDir,
